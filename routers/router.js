@@ -217,7 +217,9 @@ router.put('/save-requirement/:id',verifytoken, (req, res) => {
       const { facultyname, username, password } = req.body;
       const faculty = new userData({ facultyname, username, password });
       await faculty.save();
-      res.status(201).json({ message: 'Faculty signup successful.' });
+      const token = jwt.sign({facultyname, username, password }, 'secretKey');
+
+      res.status(201).json({ message: 'Faculty signup successful.' ,token:token});
       console.log('Faculty signup successful.')
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
