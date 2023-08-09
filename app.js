@@ -25,10 +25,12 @@ app.use('/api',api);
 
 
 
-app.listen(PORT,()=>{                                                         
-        console.log(`Server is running on ${PORT}`);                             
-})
+
 
 app.get('/*', function(req, res) {
         res.sendFile(path.join(__dirname +
         '/dist/index.html')) }); 
+
+        app.listen(PORT,()=>{                                                         
+                console.log(`Server is running on ${PORT}`);                             
+        })
